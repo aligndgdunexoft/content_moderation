@@ -46,19 +46,20 @@ def isviolence(img) -> bool:
 
 # -----------------------------------------------#
 
-# To detect nudity
 
-exposedDict = {
-    "EXPOSED_ANUS": 0,
-    "EXPOSED_BUTTOCKS": .9,
-    "EXPOSED_BREAST_M": .8,
-    "EXPOSED_BREAST_F": .8,
-    "EXPOSED_GENITALIA_F": 0,
-    "EXPOSED_GENITALIA_M": 0,
-}
+# To detect nudity
+exposedDict = [
+    "BUTTOCKS_EXPOSED",
+    "FEMALE_BREAST_EXPOSED",
+    "FEMALE_GENITALIA_EXPOSED",
+    "ANUS_EXPOSED",
+    "MALE_GENITALIA_EXPOSED",
+    "ANUS_COVERED",
+]
+
 
 def isnudityImage(img) -> bool:
-    response = ml.nudeDetector.detect(img, min_prob=0.5)
+    response = ml.nudeDetector.detect(img)
     if(len(response) == 0):
         return False
     for i in response:
